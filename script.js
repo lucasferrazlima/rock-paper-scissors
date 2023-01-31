@@ -8,3 +8,37 @@ function getComputerChoice() {
     return computerPick;
 
 }
+
+function getPlayerChoice() {
+
+    while (true) {
+        const playerPrompt = prompt("Enter your choice:\nRock\nPaper\nScissors").toLowerCase();
+        if (playerPrompt == "rock") {
+            return playerPrompt;
+            break;
+        } else if (playerPrompt == "paper"){
+            return playerPrompt;
+            break;
+        } else if (playerPrompt == "scissors"){
+            return playerPrompt;
+            break;
+        } else {
+            alert("Please enter a valid choice");
+        }
+    }
+    
+}
+
+alert(getPlayerChoice());
+
+/*
+function singleRound(playerSelection, computerSelection) {
+
+    return playerSelection + " " + computerSelection
+
+}
+
+const playerSelection = getPlayerChoice();
+const computerSelection = getComputerChoice();
+alert(singleRound(playerSelection, computerSelection));
+*/
