@@ -29,16 +29,31 @@ function getPlayerChoice() {
     
 }
 
-alert(getPlayerChoice());
-
-/*
 function singleRound(playerSelection, computerSelection) {
 
-    return playerSelection + " " + computerSelection
+    // Let's create every possible outcome of the match
+    if (playerSelection == "rock" && computerSelection =="rock") {
+        return (`Computer has chosen ${computerSelection}: It's a draw!`);     
+    } else if (playerSelection == "rock" && computerSelection =="paper") {
+        return (`Computer has chosen ${computerSelection}: You lose!`)
+    } else if (playerSelection == "rock" && computerSelection =="scissors") {
+        return (`Computer has chosen ${computerSelection}: You win!`)
+    } else if (playerSelection == "paper" && computerSelection =="paper") {
+        return (`Computer has chosen ${computerSelection}: It's a draw!`);     
+    } else if (playerSelection == "paper" && computerSelection =="scissors") {
+        return (`Computer has chosen ${computerSelection}: You lose!`)
+    } else if (playerSelection == "paper" && computerSelection =="rock") {
+        return (`Computer has chosen ${computerSelection}: You win!`)
+    } else if (playerSelection == "scissors" && computerSelection =="scissors") {
+        return (`Computer has chosen ${computerSelection}: It's a draw!`);     
+    } else if (playerSelection == "scissors" && computerSelection =="rock") {
+        return (`Computer has chosen ${computerSelection}: You lose!`)
+    } else if (playerSelection == "scissors" && computerSelection =="paper") {
+        return (`Computer has chosen ${computerSelection}: You win!`)
+    }
 
 }
 
 const playerSelection = getPlayerChoice();
 const computerSelection = getComputerChoice();
 alert(singleRound(playerSelection, computerSelection));
-*/
