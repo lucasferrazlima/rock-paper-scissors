@@ -11,6 +11,7 @@ function getComputerChoice() {
 
 function getPlayerChoice() {
 
+    // Receiving and returning a player prompt, only when valid
     while (true) {
         const playerPrompt = prompt("Enter your choice:\nRock\nPaper\nScissors").toLowerCase();
         if (playerPrompt == "rock") {
@@ -54,6 +55,36 @@ function singleRound(playerSelection, computerSelection) {
 
 }
 
-const playerSelection = getPlayerChoice();
-const computerSelection = getComputerChoice();
-alert(singleRound(playerSelection, computerSelection));
+function game () {
+
+    alert("Final score will be revealed after 5 rounds")
+
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for (let i=0; i<5; i++) {
+        const playerSelection = getPlayerChoice();
+        const computerSelection = getComputerChoice();
+        roundResult = singleRound(playerSelection, computerSelection);
+        console.log(roundResult);
+        if (roundResult.includes("win")){
+            playerScore += 1;
+        } else if (roundResult.includes("lose")){
+            computerScore += 1;
+        } else if (roundResult.includes("draw")){
+            computerScore += 0.5;
+            playerScore += 0.5;
+        }
+    }
+    
+    if (playerScore > computerScore) {
+        return (`Final score is ${playerScore} \(You\) VS ${computerScore} \(Computer\)\nCongratulations! You won!`);
+    } else if (playerScore < computerScore) {
+        return (`Final score is ${playerScore} \(You\) VS ${computerScore} \(Computer\)\nYou lose!`);
+    } else if (playerScore == computerScore) {
+        return (`Final score is ${playerScore} \(You\) VS ${computerScore} \(Computer\)\nIt's a draw!`); 
+    }
+}
+
+
+console.log(game());
