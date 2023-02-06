@@ -87,4 +87,18 @@ function game () {
 }
 
 
-console.log(game());
+function selectForPlayer() {
+    let playerSelection;
+    const computerSelection = getComputerChoice()
+    if (this.id == "rock") {
+        playerSelection = "rock"
+    } else if (this.id == "paper") {
+        playerSelection = "paper"
+    } else if (this.id == "scissors") {
+        playerSelection = "scissors"
+    }
+    console.log(singleRound(playerSelection, computerSelection));
+}
+
+const buttons = document.querySelectorAll("button");
+buttons.forEach(btn => btn.addEventListener("click", selectForPlayer));
