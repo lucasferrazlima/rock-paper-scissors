@@ -56,40 +56,15 @@ function singleRound(playerSelection, computerSelection) {
 
 }
 
-function game () {
-
-    alert("Final score will be revealed after 5 rounds")
-
-    let playerScore = 0;
-    let computerScore = 0;
-
-    for (let i=0; i<5; i++) {
-        const playerSelection = getPlayerChoice();
-        const computerSelection = getComputerChoice();
-        roundResult = singleRound(playerSelection, computerSelection);
-        console.log(roundResult);
-        if (roundResult.includes("win")){
-            playerScore += 1;
-        } else if (roundResult.includes("lose")){
-            computerScore += 1;
-        } else if (roundResult.includes("draw")){
-            computerScore += 0.5;
-            playerScore += 0.5;
-        }
-    }
-    
-    if (playerScore > computerScore) {
-        return (`Final score is ${playerScore} \(You\) VS ${computerScore} \(Computer\)\nCongratulations! You won!`);
-    } else if (playerScore < computerScore) {
-        return (`Final score is ${playerScore} \(You\) VS ${computerScore} \(Computer\)\nYou lose!`);
-    } else if (playerScore == computerScore) {
-        return (`Final score is ${playerScore} \(You\) VS ${computerScore} \(Computer\)\nIt's a draw!`); 
-    }
-}
+let playerScore = 0;
+let computerScore = 0;
+let count = 0;
 
 // Adapting player selection; instead of asking for an input, player selection is made trough three different buttons 
 function selectForPlayer() {
     
+    count += 1; // game stops at count = 5
+
     let playerSelection;
     const computerSelection = getComputerChoice()
     if (this.id == "rock") {
@@ -101,7 +76,7 @@ function selectForPlayer() {
     }
 
     const resultBox = document.querySelector(".info") // select div below buttons on DOM tree 
-    const roundResult = document.createTextNode(singleRound(playerSelection, computerSelection)); // create a text node with the played round result 
+    let roundResult = document.createTextNode(singleRound(playerSelection, computerSelection)); // create a text node with the played round result 
 
     // before appending roundResult to resultBox, we should scan resultBox for any other text content and remove it if found - that's the while job:
     while(resultBox.firstChild) {
@@ -109,6 +84,53 @@ function selectForPlayer() {
     }
 
     resultBox.appendChild(roundResult);
+
+     // converting roundResult to string for verification using "str.includes()":
+    roundResultString = roundResult.wholeText;
+
+    // updating game score
+    if (roundResultString.includes("win")){
+        playerScore += 1;
+    } else if (roundResultString.includes("lose")){
+        computerScore += 1;
+    } else if (roundResultString.includes("draw")){
+        computerScore += 0.5;
+        playerScore += 0.5;
+    }
+
+    // Appending score to designated div
+    const playerBox = document.querySelector("#player")
+    const computerBox = document.querySelector("#computer")
+    const plScore = document.createTextNode(playerScore)
+    const pcScore = document.createTextNode(computerScore)
+
+    while(playerBox.firstChild) {
+        playerBox.removeChild(playerBox.firstChild);
+    }
+    playerBox.appendChild(plScore);
+
+    while(computerBox.firstChild) {
+        computerBox.removeChild(computerBox.firstChild);
+    }
+    computerBox.appendChild(pcScore);
+    
+    let finalResult;
+
+    // When the count hit 5, the match is ended and a winner is declared. Then the score and the count are redefined to 0
+    if (count == 5) {
+        if (playerScore > computerScore) {
+            finalResult = `Final score is ${playerScore} \(You\) VS ${computerScore} \(Computer\)\nCongratulations! You won!`;
+        } else if (playerScore < computerScore) {
+            finalResult = `Final score is ${playerScore} \(You\) VS ${computerScore} \(Computer\)\nYou lose!`;
+        } else if (playerScore == computerScore) {
+            finalResult = `Final score is ${playerScore} \(You\) VS ${computerScore} \(Computer\)\nIt's a draw!`; 
+        }    
+        alert(finalResult);
+        playerScore = 0;
+        computerScore = 0;
+        count = 0;
+    }
+
 }
 
 const buttons = document.querySelectorAll("button");
