@@ -30,6 +30,7 @@ function getPlayerChoice() {
     
 }
 
+// function for playing a single round of rps
 function singleRound(playerSelection, computerSelection) {
 
     // Let's create every possible outcome of the match
@@ -86,8 +87,9 @@ function game () {
     }
 }
 
-
+// Adapting player selection; instead of asking for an input, player selection is made trough three different buttons 
 function selectForPlayer() {
+    
     let playerSelection;
     const computerSelection = getComputerChoice()
     if (this.id == "rock") {
@@ -97,8 +99,19 @@ function selectForPlayer() {
     } else if (this.id == "scissors") {
         playerSelection = "scissors"
     }
-    console.log(singleRound(playerSelection, computerSelection));
+
+    const resultBox = document.querySelector(".info") // select div below buttons on DOM tree 
+    const roundResult = document.createTextNode(singleRound(playerSelection, computerSelection)); // create a text node with the played round result 
+
+    // before appending roundResult to resultBox, we should scan resultBox for any other text content and remove it if found - that's the while job:
+    while(resultBox.firstChild) {
+        resultBox.removeChild(resultBox.firstChild);
+    }
+
+    resultBox.appendChild(roundResult);
 }
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach(btn => btn.addEventListener("click", selectForPlayer));
+
+document.getElementsByClassName("info").textContent = selectForPlayer;
