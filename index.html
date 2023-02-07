@@ -9,15 +9,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="instructions">A win is worth 1 and a draw is worth 0.5<br>
+        Game ends after 5 rounds
+    </div>
+    <p1 class="title">ROCK PAPER SCISSORS</p1>
+    <p1 class="japanese">(じゃんけんぽん)</p1>
+    <div class="options_container">
+        <button id="rock"><img src="/images/hand-closed.png"/></button>
+        <button id="paper"><img src="/images/open-hands.png"/></button>
+        <button id="scissors"><img src="/images/peace.png"/></button>
+    </div>
+    <div class="score_container">
         <div class="score" id="player"></div>
+        <div class="score" id="x">x</div>
         <div class="score" id="computer"></div>
     </div>
-    <div class="container">
-        <button id="rock">Rock</button>
-        <button id="paper">Paper</button>
-        <button id="scissors">Scissors</button>
-    </div>
     <div class="info"></div>
+    <div class="footer">
+        Made by <a href="https://github.com/lucasferrazlima" target="_blank">&nbsp;Lucas Ferraz Lima&nbsp;</a>
+    </div>
 </body>
 </html>

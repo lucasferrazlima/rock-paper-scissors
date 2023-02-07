@@ -119,13 +119,21 @@ function selectForPlayer() {
     // When the count hit 5, the match is ended and a winner is declared. Then the score and the count are redefined to 0
     if (count == 5) {
         if (playerScore > computerScore) {
-            finalResult = `Final score is ${playerScore} \(You\) VS ${computerScore} \(Computer\)\nCongratulations! You won!`;
+            finalResult = `Final score is ${playerScore} x ${computerScore} | \nCongratulations! You won!`;
         } else if (playerScore < computerScore) {
-            finalResult = `Final score is ${playerScore} \(You\) VS ${computerScore} \(Computer\)\nYou lose!`;
+            finalResult = `Final score is ${playerScore} x ${computerScore} |\nYou lose!`;
         } else if (playerScore == computerScore) {
-            finalResult = `Final score is ${playerScore} \(You\) VS ${computerScore} \(Computer\)\nIt's a draw!`; 
-        }    
-        alert(finalResult);
+            finalResult = `Final score is ${playerScore} x ${computerScore} |\nIt's a draw!`; 
+        }
+
+        let gameResult = document.createTextNode(finalResult);
+
+        while(resultBox.firstChild) {
+            resultBox.removeChild(resultBox.firstChild);
+        }
+    
+        resultBox.appendChild(gameResult);
+
         playerScore = 0;
         computerScore = 0;
         count = 0;
