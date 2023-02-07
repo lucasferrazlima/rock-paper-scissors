@@ -60,6 +60,7 @@ p1 {
     gap: 40px;
     justify-content: center;
     padding-top: 10px;
+    margin-top: 20px;
     
 }
 
@@ -71,7 +72,7 @@ img {
 button {
     padding: 15px;
     background-color: #031d38;
-    border-color: #031d38;
+    border-color: #cdd7e2;
 }
 
 button:hover {
